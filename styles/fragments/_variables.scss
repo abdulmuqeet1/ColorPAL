@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+$primary-color: navy;
+
+////// light theme /////////
+$bg-color: rgb(255, 255, 255);
+$font-color: rgb(0, 0, 0);
+
+////// dark theme /////////
+$bg-darkcolor: #111111;
+$font-darkcolor: #fff;
+
+$fontstyle: "Roboto", sans-serif;
+
+$max-width: 1350px;
+
+$mobilelayoutdefautpadding: 0 1rem;
