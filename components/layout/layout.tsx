@@ -87,7 +87,7 @@ const Layout = ({ children }: Props) => {
                 </Link>
 
                 <Link href="/" passHref>
-                  <li>ABOUT</li>
+                  <li>About</li>
                 </Link>
               </ul>
             </nav>
