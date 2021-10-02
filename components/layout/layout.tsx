@@ -74,19 +74,19 @@ const Layout = ({ children }: Props) => {
                 LOGO
               </Link>
               <ul className={style.mainlinks}>
-                <Link href="/" passHref>
+                <Link href="/palletes" passHref>
                   <li>Color Pallete</li>
                 </Link>
 
-                <Link href="/" passHref>
+                <Link href="/gradient" passHref>
                   <li>Gradient Color</li>
                 </Link>
 
-                <Link href="/" passHref>
-                  <li>Explore</li>
+                <Link href="/library" passHref>
+                  <li>Color Library</li>
                 </Link>
 
-                <Link href="/" passHref>
+                <Link href="/about" passHref>
                   <li>About</li>
                 </Link>
               </ul>
@@ -94,7 +94,7 @@ const Layout = ({ children }: Props) => {
 
             <div className={style.settingslinks}>
               <ul>
-                <Link href="/" passHref>
+                <Link href="/collections" passHref>
                   <li>
                     <AiOutlineHeart />
                   </li>
@@ -131,28 +131,28 @@ const Layout = ({ children }: Props) => {
             >
               <nav className="mainlinks">
                 <ul>
-                  <Link href="/" passHref>
+                  <Link href="/palletes" passHref>
                     <li>Color Pallete</li>
                   </Link>
 
-                  <Link href="/" passHref>
+                  <Link href="/gradient" passHref>
                     <li>Gradient Color</li>
                   </Link>
 
-                  <Link href="/" passHref>
-                    <li>Explore</li>
+                  <Link href="/library" passHref>
+                    <li>library</li>
                   </Link>
 
                   {/* <Link href="/" passHref>
               <li>Collection</li>
             </Link> */}
 
-                  <Link href="/" passHref>
+                  <Link href="/about" passHref>
                     <li>ABOUT</li>
                   </Link>
                 </ul>
                 <div className="mobilenavsocial">
-                  <Link href="/" passHref>
+                  <Link href="/collections" passHref>
                     <li>
                       <AiOutlineHeart />
                     </li>

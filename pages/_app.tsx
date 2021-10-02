@@ -9,24 +9,22 @@ import {
 } from "react";
 import Layout from "../components/layout/layout";
 
-const Usercontext = createContext({});
+// const Usercontext = createContext({});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // shift this user cookie code to layout file
-  const [user, setUser] = useState("abdul");
+  const [user, setUser] = useState("");
   useEffect(() => {
     if (window.localStorage.getItem("cp_uid")) {
       let user = window.localStorage.getItem("cp_uid");
       setUser(user!);
     }
   }, [user]);
+  console.log(user);
 
   return (
-    <Usercontext.Provider value={user}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Usercontext.Provider>
+    <Layout>
+      <Component {...pageProps} user={user} />
+    </Layout>
   );
 }
 export default MyApp;
