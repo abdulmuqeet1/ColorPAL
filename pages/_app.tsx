@@ -19,7 +19,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       setUser(user!);
     }
   }, [user]);
-  console.log(user);
 
   return (
     <Layout>

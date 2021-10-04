@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.14",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-cookie": "^4.1.1",
@@ -16,7 +17,8 @@
     "react-icons": "^4.2.0",
     "react-redux": "^7.2.5",
     "redux": "^4.1.1",
-    "sass": "^1.42.1"
+    "sass": "^1.42.1",
+    "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "@types/react": "17.0.24",

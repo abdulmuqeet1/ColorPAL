@@ -1,0 +1,28 @@
+/////////////////////////////////////////////
+////////////// SETTING UI ///////////////////
+/////////////////////////////////////////////
+.settingui {
+  position: fixed;
+  //   left: 1rem;
+  top: 8rem;
+
+  width: 15rem;
+  height: 30rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-right: 2rem;
+  border-radius: 10px;
+  z-index: 100;
+}
+
+/////////////////////////////////////////////
+////////////// LIBRARY    ///////////////////
+/////////////////////////////////////////////
+.libpagemaincontainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.colorlibrarylist {
+  margin-left: 18rem;
+}

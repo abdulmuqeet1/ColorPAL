@@ -7,7 +7,7 @@ const Home: NextPage = (props: any) => {
       <h2>Main Page</h2>
       <p>pallete page </p>
       <p>color library page</p>
-      <p>{props.user}</p>
+      {/* <p>{props.user}</p> */}
     </div>
   );
 };
