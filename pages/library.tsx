@@ -50,7 +50,7 @@ const ColorBox = styled.div`
 `;
 
 const Library: NextPage = (props: any) => {
-  const [col, setCol] = useState("");
+  const [col, setCol] = useState("aqua");
 
   const setcolor = (color: any) => {
     setCol(color);
