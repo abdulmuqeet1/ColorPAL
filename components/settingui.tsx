@@ -11,10 +11,8 @@ const SettingUI = ({ color }: any) => {
   const [opacityval, setOpacityval] = useState(255);
   const [preval, setPreval] = useState(false);
 
-  // console.log(`color from setting ui ${color}`);
   useEffect(() => {
     setUsecol(color);
-    console.log("color from hook: ", usecol);
   }, [color]);
 
   function slidercolorchange(e: any) {
@@ -40,6 +38,7 @@ const SettingUI = ({ color }: any) => {
   }
 
   function copytext() {
+    navigator.clipboard.writeText(usecol);
     console.log("copy text function");
   }
 
@@ -158,7 +157,7 @@ const SettingUI = ({ color }: any) => {
         }
         .colorcode button {
           margin: 0;
-
+          padding-top: 5px;
           border: none;
           outline: none;
           width: 2rem;
@@ -171,6 +170,7 @@ const SettingUI = ({ color }: any) => {
       `}</style>
       <div className={preval ? "previewon" : "previewoff"}></div>
       <div className={style.settingui}>
+        <h2>Setting UI</h2>
         <div className="slidecontainer">
           <label>R</label>
           <input
@@ -220,15 +220,12 @@ const SettingUI = ({ color }: any) => {
           />
         </div>
 
-        <h2>Setting UI</h2>
-
-        {/* <div className="displayscreen">Preview</div> */}
         <button className="previewscreenbtn" onClick={() => preview()}>
           Preview
         </button>
         <div className="colorvaltext">
           <div className="colorcode">
-            <p id="hexcodedisplay">#fff</p>
+            <p id="hexcodedisplay">{usecol}</p>
             <button id="copyhexbtn" onClick={() => copytext()}>
               <AiOutlineCopy />
             </button>

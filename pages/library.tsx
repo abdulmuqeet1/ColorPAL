@@ -1,8 +1,11 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import style from "../styles/restpage.module.scss";
-import { colors, colorsobj, newcol } from "../libs/colors";
+// import { colors, colorsobj, newcol } from "../libs/colors";
+// import { colorNames } from "../libs/colorNames.js";
+import { colormini } from "../libs/colormini.js";
 import styled from "styled-components";
+import useInView from "react-cool-inview";
 
 // compoenets
 import SettingUI from "../components/settingui";
@@ -56,6 +59,9 @@ const Library: NextPage = (props: any) => {
     setCol(color);
   };
 
+  const { observe, inView } = useInView();
+  console.log(inView);
+
   return (
     <>
       <div className={style.libpagemaincontainer}>
@@ -65,13 +71,13 @@ const Library: NextPage = (props: any) => {
 
         <div className={style.colorlibrarylist}>
           <h2>Library Page</h2>
-          <div className="colorlibrary">
-            {newcol.map((c, key) => {
+          <div className="colorlibrary" ref={observe}>
+            {colormini.map((c, key) => {
               return (
                 <div key={key}>
                   <ColorBox color={c.hex}>
                     <div className="maincol" onClick={() => setcolor(c.hex)}>
-                      {c.colname}
+                      {c.name}
                     </div>
                     <div className="shade1"></div>
                     <div className="shade2"></div>
