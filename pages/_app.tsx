@@ -7,9 +7,8 @@ import {
   useContext,
   createContext,
 } from "react";
+import styled from "styled-components";
 import Layout from "../components/layout/layout";
-
-// const Usercontext = createContext({});
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState("");
@@ -21,9 +20,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [user]);
 
   return (
-    <Layout>
-      <Component {...pageProps} user={user} />
-    </Layout>
+    <>
+      <Layout>
+        <Component {...pageProps} user={user} />
+      </Layout>
+    </>
   );
 }
 export default MyApp;

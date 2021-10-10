@@ -64,6 +64,7 @@
 
 .navbar {
   width: fit-content;
+  height: 5rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -112,7 +113,7 @@
   display: none;
   place-content: center;
   border: none;
-  z-index: 10000;
+  z-index: 100000;
 }
 
 .mobilelinks {
@@ -127,6 +128,8 @@
   background-color: black;
   color: #fff;
   transition: all 300ms ease-in-out;
+  z-index: 10000;
+
   nav {
     width: 100%;
     height: auto;
@@ -165,6 +168,7 @@
   background-color: black !important;
   color: #fff;
   transition: all 500ms ease-in-out;
+  z-index: 10000;
 
   nav {
     width: 100%;
@@ -201,19 +205,6 @@
     }
   }
 }
-// .activemobilelinks {
-//   display: none;
-
-//   position: fixed;
-//   top: 0;
-//   bottom: 0;
-//   right: 100%;
-//   padding-top: 10rem;
-//   width: 90%;
-//   max-width: 800px;
-//   background-color: black;
-//   color: #fff;
-// }
 
 @media (max-width: 780px) {
   .settingslinks,
@@ -229,7 +220,7 @@
   }
 }
 
-//////////// Rest //////////////
+//////////// FOOTER //////////////
 
 .footer {
   position: relative;
@@ -243,7 +234,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15rem;
+  margin-top: 5rem;
 }
 
 .footer a {
@@ -337,5 +328,55 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+}
+
+//////////// INDEX/HOME PAGE //////////////
+
+.mainpagecontainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 5rem;
+}
+
+.fronttext {
+  width: fit-content;
+  height: 28rem;
+  margin: 1rem;
+  padding: 1rem;
+  h1 {
+    font-size: 3.5rem;
+  }
+  h4 {
+    opacity: 0.6;
+    margin-top: -2rem;
+    font-size: 1.2rem;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    p {
+      margin-right: 10px;
+      cursor: pointer;
+      span {
+        font-weight: 900;
+      }
+      &:hover {
+        color: tomato;
+      }
+    }
+  }
+}
+.threedmodel {
+  width: 20rem;
+  height: 28rem;
+}
+
+@media (max-width: 780px) {
+  .threedmodel {
+    display: none;
   }
 }

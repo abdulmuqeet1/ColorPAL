@@ -2,17 +2,27 @@ import { useState, useEffect } from "react";
 import style from "../styles/restpage.module.scss";
 import styled from "styled-components";
 import { AiOutlineCopy } from "react-icons/ai";
+const conv = require("colvert");
 
 const SettingUI = ({ color }: any) => {
-  const [usecol, setUsecol] = useState(color);
-  const [redval, setRedval] = useState(255);
-  const [blueval, setBlueval] = useState(255);
-  const [greenval, setGreenval] = useState(255);
+  const [usecol, setUsecol] = useState(color); // color value in hex
+  let rgb = conv.hexTorgb(usecol);
+  let hsl = conv.hexTohsl(usecol);
+  // const [rgb, setRgb] = useState(nrgb);
+  // const [hsl, setHsl] = useState(nhsl);
+  // console.log(nrgb, nhsl);
+
+  const [redval, setRedval] = useState(rgb[0]);
+  const [blueval, setBlueval] = useState(rgb[1]);
+  const [greenval, setGreenval] = useState(rgb[2]);
   const [opacityval, setOpacityval] = useState(255);
   const [preval, setPreval] = useState(false);
 
   useEffect(() => {
     setUsecol(color);
+    setRedval(rgb[0]);
+    setBlueval(rgb[1]);
+    setGreenval(rgb[2]);
   }, [color]);
 
   function slidercolorchange(e: any) {
@@ -21,13 +31,21 @@ const SettingUI = ({ color }: any) => {
     }
 
     if (e.target.name == "redslider") {
-      return setRedval(e.target.value);
+      setRedval(e.target.value);
+      let color = conv.rgbTohex([redval, blueval, greenval]);
+      return setUsecol(color);
     } else if (e.target.name == "greenslider") {
       setGreenval(e.target.value);
+      let color = conv.rgbTohex([redval, blueval, greenval]);
+      return setUsecol(color);
     } else if (e.target.name == "blueslider") {
       setBlueval(e.target.value);
+      let color = conv.rgbTohex([redval, blueval, greenval]);
+      return setUsecol(color);
     } else if (e.target.name == "opacityslider") {
       setOpacityval(e.target.value);
+      let color = conv.rgbTohex([redval, blueval, greenval]);
+      return setUsecol(color);
     } else {
       return;
     }
@@ -37,13 +55,15 @@ const SettingUI = ({ color }: any) => {
     setPreval(!preval);
   }
 
-  function copytext() {
+  function copyhex() {
     navigator.clipboard.writeText(usecol);
-    console.log("copy text function");
   }
 
   function copyrgbtext() {
-    console.log("copy rgb code");
+    navigator.clipboard.writeText(`rgb(${rgb[0]} , ${rgb[1]} ,${rgb[2]})`);
+  }
+  function copyhsl() {
+    navigator.clipboard.writeText(`hsl(${hsl[0]}, ${hsl[1]}, ${hsl[2]})`);
   }
 
   return (
@@ -51,15 +71,12 @@ const SettingUI = ({ color }: any) => {
       <style jsx>{`
         .previewscreenbtn {
           width: 12rem;
-          height: 6rem;
-          background: ${color};
+          height: 7rem;
+          background: ${usecol};
           outline: none;
           border: none;
           cursor: pointer;
         }
-        // .displayscreen:hover {
-        //   background: black;
-        // }
         #redslider,
         #greenslider,
         #blueslider,
@@ -115,7 +132,7 @@ const SettingUI = ({ color }: any) => {
           top: 0;
           left: 0;
           right: 0;
-          background-color: ${color};
+          background-color: ${usecol};
           z-index: 10;
           transition: all 200ms ease-in-out;
         }
@@ -166,6 +183,7 @@ const SettingUI = ({ color }: any) => {
           background-color: white;
           color: black;
           border-radius: 50%;
+          cursor: pointer;
         }
       `}</style>
       <div className={preval ? "previewon" : "previewoff"}></div>
@@ -207,7 +225,8 @@ const SettingUI = ({ color }: any) => {
             name="blueslider"
             onChange={(e) => slidercolorchange(e)}
           />
-          <br /> <label>A</label>
+          <br />
+          {/* <label>A</label>
           <input
             type="range"
             min="0"
@@ -216,9 +235,11 @@ const SettingUI = ({ color }: any) => {
             className="slider"
             id="opacityslider"
             name="opacityslider"
+            disabled
             onChange={(e) => slidercolorchange(e)}
-          />
+          /> */}
         </div>
+        <br />
 
         <button className="previewscreenbtn" onClick={() => preview()}>
           Preview
@@ -226,19 +247,23 @@ const SettingUI = ({ color }: any) => {
         <div className="colorvaltext">
           <div className="colorcode">
             <p id="hexcodedisplay">{usecol}</p>
-            <button id="copyhexbtn" onClick={() => copytext()}>
+            <button id="copyhexbtn" onClick={() => copyhex()}>
               <AiOutlineCopy />
             </button>
           </div>
           <div className="colorcode">
-            <p id="rgbcodedisplay">rgb(255,255,255)</p>
+            <p id="rgbcodedisplay">
+              rgb({rgb[0]},{rgb[1]},{rgb[2]})
+            </p>
             <button id="copyrgbbtn" onClick={() => copyrgbtext()}>
               <AiOutlineCopy />
             </button>
           </div>
           <div className="colorcode">
-            <p id="rgbcodedisplay">hsl(255,255,255)</p>
-            <button id="copyrgbbtn" onClick={() => copyrgbtext()}>
+            <p id="rgbcodedisplay">
+              hsl({hsl[0]},{hsl[1]},{hsl[2]})
+            </p>
+            <button id="copyrgbbtn" onClick={() => copyhsl()}>
               <AiOutlineCopy />
             </button>
           </div>
