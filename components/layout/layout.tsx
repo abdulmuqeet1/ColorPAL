@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useEffect } from "react";
+import React, { ReactNode, useState, useEffect, ReactFragment } from "react";
 import Head from "./head";
 import NextHead from "next/head";
 import Header from "./header";
@@ -21,17 +21,42 @@ type Props = {
   children?: ReactNode;
 };
 
-const Layout = ({ children }: Props) => {
-  if (typeof window !== "undefined") {
-    // darkmodeval = window.localStroage.getItem("darkmode");
-  }
+export const Dropdown = () => {
+  const auth = false;
+  return (
+    <ul className={style.dropdownmenu}>
+      <li>
+        <Link href="/about">About</Link>
+      </li>
+      <li>
+        <Link href="/hire">Hire Us</Link>
+      </li>
 
+      {auth ? (
+        //change the link to "/settings"
+        <li>
+          <Link href="/">Setting</Link>
+        </li>
+      ) : (
+        <li>
+          <Link href="/login">Login</Link>
+        </li>
+      )}
+    </ul>
+  );
+};
+
+const Layout = ({ children }: Props) => {
   const [opennavbtn, setOpennavbtn] = useState(false);
   const [darkmode, setDarkmode] = useState(false);
+  const [opendd, setOpendd] = useState(false); //opendd --> open drop down menu
 
   const handlenavbarbtn = () => {
-    console.log("click");
     setOpennavbtn(!opennavbtn);
+  };
+
+  const dropdownhandler = () => {
+    setOpendd(!opendd);
   };
 
   const handledarkmodebtn = () => {
@@ -42,7 +67,6 @@ const Layout = ({ children }: Props) => {
     } else {
       window.localStorage.setItem("darkmode", "true");
     }
-    // console.log("dark mode: ", darkmode);
   };
 
   useEffect(() => {
@@ -74,20 +98,20 @@ const Layout = ({ children }: Props) => {
                 LOGO
               </Link>
               <ul className={style.mainlinks}>
-                <Link href="/palletes" passHref>
-                  <li>Color Pallete</li>
-                </Link>
-
-                <Link href="/gradient" passHref>
-                  <li>Gradient Color</li>
+                <Link href="/" passHref>
+                  <li>Home</li>
                 </Link>
 
                 <Link href="/library" passHref>
                   <li>Color Library</li>
                 </Link>
 
-                <Link href="/about" passHref>
-                  <li>About</li>
+                <Link href="/palletes" passHref>
+                  <li>Color Pallete</li>
+                </Link>
+
+                <Link href="/gradient" passHref>
+                  <li>Gradient Color</li>
                 </Link>
               </ul>
             </nav>
@@ -109,14 +133,12 @@ const Layout = ({ children }: Props) => {
                   </button>
                 </li>
 
-                {/* <li>
-                  <AiOutlineSearch />
-                </li> */}
-                <Link href="/" passHref>
+                <a onClick={() => dropdownhandler()}>
                   <li>
                     <AiFillSetting />
+                    {opendd && <Dropdown />}
                   </li>
-                </Link>
+                </a>
               </ul>
             </div>
 
@@ -166,10 +188,6 @@ const Layout = ({ children }: Props) => {
                       {darkmode ? <BsSun /> : <BsMoon />}
                     </button>
                   </li>
-
-                  {/* <li>
-                    <AiOutlineSearch />
-                  </li> */}
                   <Link href="/" passHref>
                     <li>
                       <AiFillSetting />

@@ -58,7 +58,7 @@
   padding: 0;
   li:hover {
     cursor: pointer;
-    opacity: 0.7;
+    color: tomato;
   }
 }
 
@@ -204,6 +204,25 @@
       color: #fff;
     }
   }
+}
+
+.dropdownmenu {
+  position: absolute;
+  top: 60px;
+  right: 23px;
+  width: 150px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column !important;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: fit-content;
+  padding: 1rem;
+  background-color: #1111112c !important;
+}
+
+.dropdownmenu:hover {
+  background-color: #1111112c !important;
 }
 
 @media (max-width: 780px) {

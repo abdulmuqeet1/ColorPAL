@@ -66,13 +66,6 @@ const Library: NextPage = ({ data }: any) => {
   const [colors, setColors] = useState(maindata.slice(0, 100));
 
   const [col, setCol] = useState("#2701A8");
-  // const [rgb, setRgb] = useState(conv.hexTorgb(col));
-  // const [hsl, setHsl] = useState(conv.hexTohsl(col));
-  // console.log("");
-
-  // console.log("hex", col);
-  // console.log("hsl", hsl);
-  // console.log("rgb", rgb);
 
   const setcolor = (color: any) => {
     setCol(color);

@@ -31,3 +31,76 @@
 .colorlibrarylist {
   margin-left: 18rem;
 }
+
+/////////////////////////////////////////////
+////////////// COLOR PALLETE  ///////////////
+/////////////////////////////////////////////
+
+.palletemaincontainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.palletescontainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 1px solid black;
+}
+
+.palletediv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 0 0 4px 4px;
+}
+
+.pallete {
+  width: 21rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.palletedata {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem 0 5px;
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  button {
+    margin: 0 1rem 0 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  span {
+    font-size: 1.5rem;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
