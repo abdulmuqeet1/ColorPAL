@@ -106,7 +106,7 @@ const Layout = ({ children }: Props) => {
                   <li>Color Library</li>
                 </Link>
 
-                <Link href="/palletes" passHref>
+                <Link href="/palettes" passHref>
                   <li>Color Pallete</li>
                 </Link>
 
@@ -153,7 +153,7 @@ const Layout = ({ children }: Props) => {
             >
               <nav className="mainlinks">
                 <ul>
-                  <Link href="/palletes" passHref>
+                  <Link href="/palettes" passHref>
                     <li>Color Pallete</li>
                   </Link>
 

@@ -4,7 +4,7 @@ import style from "../styles/restpage.module.scss";
 import styled from "styled-components";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
-const pallete_url =
+const palette_url =
   process.env.COLORPAL_PALLETE_URL || "http://127.0.0.1:8000/palletes";
 
 // const PalletWrapper = styled.div`
@@ -24,7 +24,7 @@ const pallete_url =
 //   }
 // `;
 
-const PalletWrapper = styled.div`
+const PaletteWrapper = styled.div`
   min-width: 1rem;
   width: 25%;
   height: 10rem;
@@ -51,7 +51,7 @@ const HeartWrapper = styled.div`
   color: red;
 `;
 
-const Palletes: NextPage = ({ palletesdata }: any) => {
+const Palettes: NextPage = ({ palettesdata }: any) => {
   const [saved, setSaved] = useState(false);
   const savehandler = () => {
     setSaved(!saved);
@@ -63,13 +63,13 @@ const Palletes: NextPage = ({ palletesdata }: any) => {
     <div className={style.palletemaincontainer}>
       <h2>color Palletes Page</h2>
       <div className={style.palletescontainer}>
-        {palletesdata.map((pal: any, key: any) => {
+        {palettesdata.map((pal: any, key: any) => {
           return (
             <div className={style.palletediv} key={key}>
               <div className={style.pallete}>
                 {pal.colorpallete.map((c: any, k: any) => {
                   return (
-                    <PalletWrapper color={c.colval} key={k}>
+                    <PaletteWrapper color={c.colval} key={k}>
                       <p
                         onClick={() => {
                           copyhexhandler(c.colval);
@@ -77,7 +77,7 @@ const Palletes: NextPage = ({ palletesdata }: any) => {
                       >
                         {c.colval}
                       </p>
-                    </PalletWrapper>
+                    </PaletteWrapper>
                   );
                 })}
               </div>
@@ -107,16 +107,16 @@ export const getStaticProps = async () => {
   try {
     const res = await fetch("http://127.0.0.1:8000/palletes");
     // console.log(res);
-    const palletesdata = await res.json();
+    const palettesdata = await res.json();
 
-    if (!palletesdata) {
+    if (!palettesdata) {
       return {
         notFound: true,
       };
     }
 
     return {
-      props: { palletesdata },
+      props: { palettesdata },
     };
   } catch (e) {
     console.log("error fetching data ", e);
@@ -127,4 +127,4 @@ export const getStaticProps = async () => {
   }
 };
 
-export default Palletes;
+export default Palettes;
