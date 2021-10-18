@@ -88,14 +88,16 @@ const Layout = ({ children }: Props) => {
           <header className={style.header}>
             <nav className={style.navbar}>
               <Link href="/" passHref>
-                {/* <Image
-                  src="/images/logo.png"
-                  width={100}
-                  height={75}
-                  alt="logo"
-                  loading="lazy"
-                /> */}
-                LOGO
+                <div className={style.logobgimg}>
+                  {/* <Image
+                    src="/CPlogo1.png"
+                    width={70}
+                    height={70}
+                    alt="logo"
+                    loading="lazy"
+                  /> */}
+                  <h2>COLORPAL</h2>
+                </div>
               </Link>
               <ul className={style.mainlinks}>
                 <Link href="/" passHref>

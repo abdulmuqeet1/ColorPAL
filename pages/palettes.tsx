@@ -1,28 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import style from "../styles/restpage.module.scss";
 import styled from "styled-components";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
-const palette_url =
-  process.env.COLORPAL_PALLETE_URL || "http://127.0.0.1:8000/palletes";
-
-// const PalletWrapper = styled.div`
-//   width: 2rem;
-//   height: 5rem;
-//   display: grid;
-//   grid-template-column: 10fr 1fr;
-//   .pallete {
-//     background-color: ${(props) => props.color};
-//     display: flex:
-//     flex-direction: row !important;
-//     align-items: center;
-//     justify-content: center;
-//   }
-//   .data {
-//     background-color: pink;
-//   }
-// `;
+const palette_uri =
+  process.env.COLORPAL_API_URL + "/palettes" ||
+  "http://127.0.0.1:8000/palettes";
 
 const PaletteWrapper = styled.div`
   min-width: 1rem;
@@ -59,6 +43,7 @@ const Palettes: NextPage = ({ palettesdata }: any) => {
   const copyhexhandler = (hex: any) => {
     navigator.clipboard.writeText(hex);
   };
+
   return (
     <div className={style.palletemaincontainer}>
       <h2>color Palletes Page</h2>
@@ -67,7 +52,7 @@ const Palettes: NextPage = ({ palettesdata }: any) => {
           return (
             <div className={style.palletediv} key={key}>
               <div className={style.pallete}>
-                {pal.colorpallete.map((c: any, k: any) => {
+                {pal.colorpalette.map((c: any, k: any) => {
                   return (
                     <PaletteWrapper color={c.colval} key={k}>
                       <p
@@ -86,7 +71,6 @@ const Palettes: NextPage = ({ palettesdata }: any) => {
                   <button onClick={() => savehandler()}>
                     {saved ? <AiFillHeart /> : <AiOutlineHeart />}
                   </button>
-                  {/* {pal.saves > 0 && <p>{pal.saves}</p>} */}
                   {pal.saves > 0 ? <p>{pal.saves}</p> : <p>98828</p>}
                 </div>
                 <div className="dots">
@@ -105,10 +89,10 @@ const Palettes: NextPage = ({ palettesdata }: any) => {
 
 export const getStaticProps = async () => {
   try {
-    const res = await fetch("http://127.0.0.1:8000/palletes");
-    // console.log(res);
-    const palettesdata = await res.json();
+    // const res = await fetch(palette_uri);
+    const res = await fetch(palette_uri);
 
+    const palettesdata = await res.json();
     if (!palettesdata) {
       return {
         notFound: true,

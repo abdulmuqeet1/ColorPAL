@@ -5,8 +5,9 @@ const Head = () => {
   return (
     <NextHead>
       <meta charSet="UTF-8" />
-      <title>Aspire Web</title>
+      <title>COLORPAL</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="/CPlogo2.png" type="image/gif"></link>
       {/* <meta
 name="description"
 content={props.description || defaultDescription}

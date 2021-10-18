@@ -1,3 +1,4 @@
+@use "./fragments/variables" as *;
 /////////////////////////////////////////////
 ////////////// SETTING UI ///////////////////
 /////////////////////////////////////////////
@@ -101,6 +102,208 @@
     opacity: 0.5;
     &:hover {
       opacity: 1;
+    }
+  }
+}
+
+/////////////////////////////////////////////
+////////////// Gradient color  //////////////
+/////////////////////////////////////////////
+.gcmaincontainer {
+  width: 100vw;
+  min-height: 80vh;
+  display: grid;
+  place-content: center;
+}
+
+/////////////////////////////////////////////
+//////////////    About        //////////////
+/////////////////////////////////////////////
+.aboutmaincontainer {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  > * {
+    margin: 0 1rem;
+  }
+}
+
+.aboutcontent {
+  width: 100%;
+  max-width: 800px;
+  h1 {
+    font-family: $fontstyle3;
+    font-size: 5rem;
+    text-transform: uppercase;
+  }
+  p {
+    width: 100%;
+    max-width: 680px;
+    margin-top: -2rem;
+  }
+}
+
+.aboutimage {
+  width: 450px;
+  height: 300px;
+  background: url("../public/rainbow.png") no-repeat;
+  background-size: 450px 300px;
+}
+
+@media (max-width: 780px) {
+  .settingslinks,
+  .mainlinks {
+    display: none;
+  }
+  .activemobilelinks,
+  .mobilelinks {
+    display: block;
+  }
+  .navbtn {
+    display: grid;
+  }
+}
+/////////////////////////////////////////////
+//////////////    Hire         //////////////
+/////////////////////////////////////////////
+
+.hiremaincontainer {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  > * {
+    margin: 0 1rem;
+  }
+  h1 {
+    font-family: $fontstyle4;
+    // font-size: 5rem;
+
+    text-transform: uppercase;
+  }
+}
+
+.hireusinfo {
+  width: 100%;
+  max-width: 450px;
+  height: 320px;
+  p {
+    margin-left: 1rem;
+  }
+  a {
+    color: blue;
+    &:hover {
+      color: tomato;
+    }
+  }
+}
+
+.contactform {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.forminputfield {
+  width: 25rem;
+  height: 2.5rem;
+  margin: 1rem 0;
+  padding-left: 10px;
+}
+
+.formbtn {
+  width: 10rem;
+  height: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 18px;
+  font-weight: 900;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.formbtnbg {
+  display: grid;
+  place-content: center;
+  width: 10.4rem;
+  height: 2.8rem;
+  background: rgb(255, 0, 0);
+  background: linear-gradient(324deg, #00aeef, #ec0c8c, yellow);
+}
+
+.formbtn:hover {
+  color: tomato;
+}
+
+.formbtndisbaled {
+  width: 10rem;
+  height: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 18px;
+  font-weight: 900;
+  opacity: 0.9;
+}
+
+.activemailmsg {
+  width: 15rem;
+  height: 2.5rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgb(255, 0, 0);
+  background: linear-gradient(324deg, #00aeef, #ec0c8c, yellow);
+  span {
+    font-size: 1.2rem;
+    // margin-right: 5px;
+    margin: 2px 5px 0 10px;
+  }
+  transition: all 600ms ease-in-out;
+  opacity: 1;
+}
+
+.mailmsg {
+  width: 15rem;
+  height: 2.5rem;
+  position: fixed;
+  bottom: 2rem;
+  right: -100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgb(255, 0, 0);
+  background: linear-gradient(324deg, #00aeef, #ec0c8c, yellow);
+  span {
+    font-size: 1.2rem;
+    // margin-right: 5px;
+    margin: 2px 5px 0 10px;
+  }
+  transition: all 600ms ease-in-out;
+  opacity: 0;
+}
+
+@media (max-width: 900px) {
+  .contactinfoinner {
+    > div {
+      width: 100%;
     }
   }
 }

@@ -7,10 +7,31 @@ import styled from "styled-components";
 import SettingUI from "../components/settingui";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { motion } from "framer-motion";
+const library_uri =
+  process.env.COLORPAL_API_URL + "/colorsmini" ||
+  "http://127.0.0.1:8000/colors";
+
+function hexToRgbA(hex: any, a: Number = 0.9) {
+  let c: any;
+  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+    c = hex.substring(1).split("");
+    if (c.length == 3) {
+      c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+    }
+    c = "0x" + c.join("");
+    return (
+      "rgba(" +
+      [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(",") +
+      "," +
+      a +
+      ")"
+    );
+  }
+  throw new Error("Bad Hex");
+}
 
 const ColorBox = styled.div`
   position: relative;
-  // max-width: 80rem
   width: 75rem;
   min-width: 10rem;
   height: 60px;
@@ -18,6 +39,8 @@ const ColorBox = styled.div`
   flex-direction: row;
   color: black;
   margin: 2rem 0;
+  background-color: #fff;
+  border-radius: 6px;
 
   .maincol {
     width: 80%;
@@ -35,44 +58,59 @@ const ColorBox = styled.div`
   .shade0 {
     width: 80px;
     height: inherit;
-    background-color: yellow;
+    background-color: ${(props) => hexToRgbA(props.color, 0.9)};
   }
   .shade1 {
     width: 80px;
     height: inherit;
-    background-color: red;
+    background-color: ${(props) => hexToRgbA(props.color, 0.8)};
   }
   .shade2 {
     width: 80px;
     height: inherit;
-    background-color: blue;
+    background-color: ${(props) => hexToRgbA(props.color, 0.7)};
   }
   .shade3 {
     width: 80px;
     height: inherit;
-    background-color: green;
+    background-color: ${(props) => hexToRgbA(props.color, 0.6)};
   }
   .shade4 {
     width: 80px;
     height: inherit;
-    background-color: pink;
+    background-color: ${(props) => hexToRgbA(props.color, 0.5)};
+  }
+  .shade5 {
+    width: 80px;
+    height: inherit;
+    background-color: ${(props) => hexToRgbA(props.color, 0.4)};
+  }
+  .shade6 {
+    width: 80px;
+    height: inherit;
+    background-color: ${(props) => hexToRgbA(props.color, 0.3)};
+  }
+  .shade7 {
+    width: 80px;
+    height: inherit;
+    background-color: ${(props) => hexToRgbA(props.color, 0.2)};
     border-radius: 0 4px 4px 0;
   }
 `;
 
 const Library: NextPage = ({ data }: any) => {
   const [maindata, setMaindata] = useState(data);
+  const [colors, setColors] = useState(maindata.slice(0, 40));
+  const [colhex, setColhex] = useState("#111111");
+  // const [colrgb, setColrgb] = useState([17, 17, 17]);
 
-  const [colors, setColors] = useState(maindata.slice(0, 100));
-
-  const [col, setCol] = useState("#2701A8");
-
-  const setcolor = (color: any) => {
-    setCol(color);
+  const setcolorhandler = (color: any, [r, g, b]: any) => {
+    setColhex(color);
+    // setColrgb([r, g, b]);
   };
 
   const getmorecolors = async () => {
-    const newcolors = maindata.slice(colors.length, colors.length + 30);
+    const newcolors = maindata.slice(colors.length, colors.length + 20);
     setColors((colors: any) => [...colors, ...newcolors]);
   };
 
@@ -80,7 +118,7 @@ const Library: NextPage = ({ data }: any) => {
     <>
       <div className={style.libpagemaincontainer}>
         <div>
-          <SettingUI color={col} />
+          <SettingUI colhex={colhex} />
         </div>
 
         <div className={style.colorlibrarylist}>
@@ -91,14 +129,23 @@ const Library: NextPage = ({ data }: any) => {
               dataLength={colors.length}
               next={getmorecolors}
               hasMore={true}
-              loader={<h3> Loading...</h3>}
+              loader={<h3>That,s All</h3>}
               endMessage={<h4>Nothing more to show</h4>}
             >
               {colors.map((c: any, key: any) => {
                 return (
                   <div key={key}>
                     <ColorBox color={c.hex}>
-                      <div className="maincol" onClick={() => setcolor(c.hex)}>
+                      <div
+                        className="maincol"
+                        onClick={() =>
+                          setcolorhandler(c.hex, [
+                            parseInt(c.rgb.r),
+                            parseInt(c.rgb.g),
+                            parseInt(c.rgb.b),
+                          ])
+                        }
+                      >
                         <p>{c.name}</p>
                       </div>
                       <div className="shade0"></div>
@@ -106,6 +153,9 @@ const Library: NextPage = ({ data }: any) => {
                       <div className="shade2"></div>
                       <div className="shade3"></div>
                       <div className="shade4"></div>
+                      <div className="shade5"></div>
+                      <div className="shade6"></div>
+                      <div className="shade7"></div>
                     </ColorBox>
                   </div>
                 );
@@ -119,7 +169,8 @@ const Library: NextPage = ({ data }: any) => {
 };
 
 export async function getStaticProps() {
-  const res = await fetch(`http://127.0.0.1:8000/colors`);
+  const res = await fetch(library_uri);
+  // const res = await fetch("http://127.0.0.1:8000/colorsmini");
   const data = await res.json();
 
   if (!data) {

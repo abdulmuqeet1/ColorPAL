@@ -4,51 +4,61 @@ import styled from "styled-components";
 import { AiOutlineCopy } from "react-icons/ai";
 const conv = require("colvert");
 
-const SettingUI = ({ color }: any) => {
-  const [usecol, setUsecol] = useState(color); // color value in hex
-  let rgb = conv.hexTorgb(usecol);
-  let hsl = conv.hexTohsl(usecol);
-  // const [rgb, setRgb] = useState(nrgb);
-  // const [hsl, setHsl] = useState(nhsl);
-  // console.log(nrgb, nhsl);
+const SettingUI = ({ colhex }: any) => {
+  const [hexval, setHexval] = useState("#111111"); // color value in hex
+  const [rgbval, setRgbval] = useState([17, 17, 17]); // color value in hex
+  // const [hslval, setHslval] = useState(colhex); // color value in hex
+  // let rgb = conv.hexTorgb(usecol);
+  let hsl = conv.hexTohsl(hexval);
 
-  const [redval, setRedval] = useState(rgb[0]);
-  const [blueval, setBlueval] = useState(rgb[1]);
-  const [greenval, setGreenval] = useState(rgb[2]);
+  const [redval, setRedval] = useState(17);
+  const [greenval, setGreenval] = useState(17);
+  const [blueval, setBlueval] = useState(17);
+
   const [opacityval, setOpacityval] = useState(255);
   const [preval, setPreval] = useState(false);
 
   useEffect(() => {
-    setUsecol(color);
+    setHexval(colhex);
+  }, [colhex]);
+  useEffect(() => {
+    let rgb = conv.hexTorgb(hexval);
     setRedval(rgb[0]);
-    setBlueval(rgb[1]);
-    setGreenval(rgb[2]);
-  }, [color]);
+    setGreenval(rgb[1]);
+    setBlueval(rgb[2]);
+    setRgbval([rgb[0], rgb[1], rgb[2]]);
+  }, [hexval]);
 
-  function slidercolorchange(e: any) {
+  function redsliderhandler(e: any) {
     if (!e) {
       return console.error("invalid input!");
     }
+    setRedval(e.target.value);
 
-    if (e.target.name == "redslider") {
-      setRedval(e.target.value);
-      let color = conv.rgbTohex([redval, blueval, greenval]);
-      return setUsecol(color);
-    } else if (e.target.name == "greenslider") {
-      setGreenval(e.target.value);
-      let color = conv.rgbTohex([redval, blueval, greenval]);
-      return setUsecol(color);
-    } else if (e.target.name == "blueslider") {
-      setBlueval(e.target.value);
-      let color = conv.rgbTohex([redval, blueval, greenval]);
-      return setUsecol(color);
-    } else if (e.target.name == "opacityslider") {
-      setOpacityval(e.target.value);
-      let color = conv.rgbTohex([redval, blueval, greenval]);
-      return setUsecol(color);
-    } else {
-      return;
+    let c = conv.rgbTohex([e.target.value, greenval, blueval]);
+    setHexval(c);
+    return;
+  }
+
+  function greensliderhandler(e: any) {
+    if (!e) {
+      return console.error("invalid input!");
     }
+    setGreenval(e.target.value);
+    let c = conv.rgbTohex([redval, e.target.value, blueval]);
+    setHexval(c);
+    return;
+  }
+
+  function bluesliderhandler(e: any) {
+    if (!e) {
+      return console.error("invalid input!");
+    }
+    setBlueval(e.target.value);
+
+    let c = conv.rgbTohex([redval, greenval, e.target.value]);
+    setHexval(c);
+    return;
   }
 
   function preview() {
@@ -56,11 +66,14 @@ const SettingUI = ({ color }: any) => {
   }
 
   function copyhex() {
-    navigator.clipboard.writeText(usecol);
+    navigator.clipboard.writeText(hexval);
   }
 
   function copyrgbtext() {
-    navigator.clipboard.writeText(`rgb(${rgb[0]} , ${rgb[1]} ,${rgb[2]})`);
+    navigator.clipboard.writeText(
+      `rgb(${rgbval[0]} , ${rgbval[1]} ,${rgbval[2]})`
+    );
+    // navigator.clipboard.writeText(`rgb(11, 123, 29)`);
   }
   function copyhsl() {
     navigator.clipboard.writeText(`hsl(${hsl[0]}, ${hsl[1]}, ${hsl[2]})`);
@@ -72,7 +85,7 @@ const SettingUI = ({ color }: any) => {
         .previewscreenbtn {
           width: 12rem;
           height: 7rem;
-          background: ${usecol};
+          background: ${hexval};
           outline: none;
           border: none;
           cursor: pointer;
@@ -132,7 +145,7 @@ const SettingUI = ({ color }: any) => {
           top: 0;
           left: 0;
           right: 0;
-          background-color: ${usecol};
+          background-color: ${hexval};
           z-index: 10;
           transition: all 200ms ease-in-out;
         }
@@ -195,11 +208,11 @@ const SettingUI = ({ color }: any) => {
             type="range"
             min="0"
             max="255"
-            value={redval}
+            value={rgbval[0]}
             className="slider"
             id="redslider"
             name="redslider"
-            onChange={(e) => slidercolorchange(e)}
+            onChange={(e) => redsliderhandler(e)}
           />
           <br />
           <label>G</label>
@@ -207,11 +220,11 @@ const SettingUI = ({ color }: any) => {
             type="range"
             min="0"
             max="255"
-            value={greenval}
+            value={rgbval[1]}
             className="slider"
             id="greenslider"
             name="greenslider"
-            onChange={(e) => slidercolorchange(e)}
+            onChange={(e) => greensliderhandler(e)}
           />
           <br />
           <label>B</label>
@@ -219,11 +232,11 @@ const SettingUI = ({ color }: any) => {
             type="range"
             min="0"
             max="255"
-            value={blueval}
+            value={rgbval[2]}
             className="slider"
             id="blueslider"
             name="blueslider"
-            onChange={(e) => slidercolorchange(e)}
+            onChange={(e) => bluesliderhandler(e)}
           />
           <br />
           {/* <label>A</label>
@@ -246,14 +259,14 @@ const SettingUI = ({ color }: any) => {
         </button>
         <div className="colorvaltext">
           <div className="colorcode">
-            <p id="hexcodedisplay">{usecol}</p>
+            <p id="hexcodedisplay">{hexval}</p>
             <button id="copyhexbtn" onClick={() => copyhex()}>
               <AiOutlineCopy />
             </button>
           </div>
           <div className="colorcode">
             <p id="rgbcodedisplay">
-              rgb({rgb[0]},{rgb[1]},{rgb[2]})
+              rgb({rgbval[0]},{rgbval[1]},{rgbval[2]})
             </p>
             <button id="copyrgbbtn" onClick={() => copyrgbtext()}>
               <AiOutlineCopy />

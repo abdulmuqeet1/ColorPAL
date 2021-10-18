@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 $primary-color: navy;
 
@@ -11,7 +14,9 @@ $bg-darkcolor: #111111;
 $font-darkcolor: #fff;
 
 $fontstyle: "Roboto", sans-serif;
-
+$fontstyle2: "Courgette", cursive;
+$fontstyle3: "IM Fell Double Pica";
+$fontstyle4: "Bebas Neue", cursive;
 $max-width: 1650px;
 
 $mobilelayoutdefautpadding: 0 1rem;

@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
-import style from "../styles/Home.module.scss";
+import style from "../styles/restpage.module.scss";
 
 const Gradient: NextPage = (props: any) => {
   return (
-    <div className={style.maincontainer}>
-      <h2>Gradient Color Page</h2>
+    <div className={style.gcmaincontainer}>
+      <h2>Feature Coming Soon</h2>
     </div>
   );
 };

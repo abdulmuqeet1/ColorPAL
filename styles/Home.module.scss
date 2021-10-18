@@ -71,6 +71,16 @@
   align-items: center;
 }
 
+.logobgimg {
+  width: 160px;
+  height: 60px;
+  background: url("../public/CPlogo1.png") no-repeat;
+  background-size: 120px 60px;
+  h2 {
+    margin-left: 2rem;
+  }
+}
+
 .mainlinks {
   display: flex;
   flex-direction: row;
