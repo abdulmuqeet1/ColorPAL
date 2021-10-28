@@ -1,11 +1,16 @@
 import type { NextPage } from "next";
+import Link from "next/link";
+import style from "../styles/restpage.module.scss";
 
 const Page404: NextPage = () => {
   return (
-    <div>
-      404 error, cant find your page
+    <div className={style.errorpage}>
       <p>
-        <strong>Go Back</strong>
+        Error finding your page
+        <br />
+        <strong>
+          <Link href="/">Go To Home</Link>
+        </strong>
       </p>
     </div>
   );

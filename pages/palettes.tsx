@@ -46,7 +46,7 @@ const Palettes: NextPage = ({ palettesdata }: any) => {
 
   return (
     <div className={style.palletemaincontainer}>
-      <h2>color Palletes Page</h2>
+      <h2>COLOR PALETTES</h2>
       <div className={style.palletescontainer}>
         {palettesdata.map((pal: any, key: any) => {
           return (
@@ -69,9 +69,10 @@ const Palettes: NextPage = ({ palettesdata }: any) => {
               <div className={style.palletedata}>
                 <div>
                   <button onClick={() => savehandler()}>
-                    {saved ? <AiFillHeart /> : <AiOutlineHeart />}
+                    {/* {saved ? <AiFillHeart /> : <AiOutlineHeart />} */}
+                    <AiOutlineHeart />
                   </button>
-                  {pal.saves > 0 ? <p>{pal.saves}</p> : <p>98828</p>}
+                  {pal.saves > 0 && <p>{pal.saves}</p>}
                 </div>
                 <div className="dots">
                   <span>

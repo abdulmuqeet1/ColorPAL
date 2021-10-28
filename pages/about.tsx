@@ -23,7 +23,7 @@ const About: NextPage = (props: any) => {
       <div className={style.aboutcontent}>
         <h1>About colorpal</h1>
         <p>
-          Color Hunt is an open collection of beautiful color palettes and color
+          ColorPal is an open collection of beautiful color palettes and color
           library with alot of useful features, created by abdul muqeet.
           ColorPal started as a personal small project built to share trendy
           color combinations between a group of designer friends and developers.

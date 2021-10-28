@@ -11,8 +11,8 @@ const Home: NextPage = (props: any) => {
         <h4>color library app for designer</h4>
         <br />
         <div className="mainpagelinks">
-          <Link href="/palletes" passHref>
-            <p> Palletes </p>
+          <Link href="/palettes" passHref>
+            <p> Palettes </p>
           </Link>
           <p>
             <span>-</span>

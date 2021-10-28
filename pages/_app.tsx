@@ -1,29 +1,17 @@
 import "../styles/globals.scss";
 import type { AppProps } from "next/app";
-import {
-  useState,
-  useEffect,
-  useReducer,
-  useContext,
-  createContext,
-} from "react";
-import styled from "styled-components";
+import { useState, useEffect } from "react";
 import Layout from "../components/layout/layout";
+import { Provider } from "next-auth/client";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [user, setUser] = useState("");
-  useEffect(() => {
-    if (window.localStorage.getItem("cp_uid")) {
-      let user = window.localStorage.getItem("cp_uid");
-      setUser(user!);
-    }
-  }, [user]);
-
   return (
     <>
-      <Layout>
-        <Component {...pageProps} user={user} />
-      </Layout>
+      <Provider session={pageProps.session}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     </>
   );
 }

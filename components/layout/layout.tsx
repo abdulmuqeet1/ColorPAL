@@ -1,4 +1,7 @@
 import React, { ReactNode, useState, useEffect, ReactFragment } from "react";
+import { useSession } from "next-auth/client";
+import { signIn, signOut } from "next-auth/client";
+
 import Head from "./head";
 import NextHead from "next/head";
 import Header from "./header";
@@ -22,9 +25,23 @@ type Props = {
 };
 
 export const Dropdown = () => {
+  const [session] = useSession();
   const auth = false;
   return (
     <ul className={style.dropdownmenu}>
+      {session && (
+        <li className={style.userinfo}>
+          <Image
+            src={`${session.user?.image}`}
+            width={30}
+            height={30}
+            alt="avatar"
+            loading="lazy"
+          />
+          <p>{session.user?.name}</p>
+        </li>
+      )}
+
       <li>
         <Link href="/about">About</Link>
       </li>
@@ -32,14 +49,32 @@ export const Dropdown = () => {
         <Link href="/hire">Hire Us</Link>
       </li>
 
-      {auth ? (
+      {session ? (
         //change the link to "/settings"
         <li>
-          <Link href="/">Setting</Link>
+          <Link href="/" passHref>
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                signOut();
+              }}
+            >
+              Sign Out
+            </a>
+          </Link>
         </li>
       ) : (
         <li>
-          <Link href="/login">Login</Link>
+          <Link href="/api/auth/signin" passHref>
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                signIn();
+              }}
+            >
+              Login
+            </a>
+          </Link>
         </li>
       )}
     </ul>
@@ -47,6 +82,7 @@ export const Dropdown = () => {
 };
 
 const Layout = ({ children }: Props) => {
+  const [session] = useSession();
   const [opennavbtn, setOpennavbtn] = useState(false);
   const [darkmode, setDarkmode] = useState(false);
   const [opendd, setOpendd] = useState(false); //opendd --> open drop down menu
@@ -109,7 +145,7 @@ const Layout = ({ children }: Props) => {
                 </Link>
 
                 <Link href="/palettes" passHref>
-                  <li>Color Pallete</li>
+                  <li>Color Palette</li>
                 </Link>
 
                 <Link href="/gradient" passHref>
@@ -155,25 +191,50 @@ const Layout = ({ children }: Props) => {
             >
               <nav className="mainlinks">
                 <ul>
+                  <Link href="/library" passHref>
+                    <li>Color Library</li>
+                  </Link>
                   <Link href="/palettes" passHref>
-                    <li>Color Pallete</li>
+                    <li>Color Palette</li>
                   </Link>
 
                   <Link href="/gradient" passHref>
                     <li>Gradient Color</li>
                   </Link>
-
-                  <Link href="/library" passHref>
-                    <li>library</li>
+                  <Link href="/hire" passHref>
+                    <li>Hire Us</li>
                   </Link>
-
-                  {/* <Link href="/" passHref>
-              <li>Collection</li>
-            </Link> */}
-
                   <Link href="/about" passHref>
                     <li>ABOUT</li>
                   </Link>
+                  {session ? (
+                    //change the link to "/settings"
+                    <li>
+                      <Link href="/" passHref>
+                        <a
+                          onClick={(e) => {
+                            e.preventDefault();
+                            signOut();
+                          }}
+                        >
+                          Sign Out
+                        </a>
+                      </Link>
+                    </li>
+                  ) : (
+                    <li>
+                      <Link href="/api/auth/signin" passHref>
+                        <a
+                          onClick={(e) => {
+                            e.preventDefault();
+                            signIn();
+                          }}
+                        >
+                          Login
+                        </a>
+                      </Link>
+                    </li>
+                  )}
                 </ul>
                 <div className="mobilenavsocial">
                   <Link href="/collections" passHref>

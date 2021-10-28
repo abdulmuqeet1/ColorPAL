@@ -52,7 +52,6 @@
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
-  border: 1px solid black;
 }
 
 .palletediv {
@@ -117,6 +116,55 @@
 }
 
 /////////////////////////////////////////////
+////////////// Collections     //////////////
+/////////////////////////////////////////////
+.collectionspagelogin {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  button {
+    width: 8rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #000;
+    // background: rgb(255, 0, 0);
+    background: transparent;
+    opacity: 0.8;
+    transition: 400ms;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+      background: linear-gradient(324deg, #00aeef, #ec0c8c, yellow);
+      opacity: 1;
+    }
+  }
+}
+.collectionspagewithItems {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  div {
+    min-height: 60vh;
+    display: grid;
+    place-content: center;
+  }
+}
+
+/////////////////////////////////////////////
 //////////////    About        //////////////
 /////////////////////////////////////////////
 .aboutmaincontainer {
@@ -167,6 +215,7 @@
     display: grid;
   }
 }
+
 /////////////////////////////////////////////
 //////////////    Hire         //////////////
 /////////////////////////////////////////////
@@ -306,4 +355,14 @@
       width: 100%;
     }
   }
+}
+
+/////////////////////////////////////////////
+//////////////    Hire         //////////////
+/////////////////////////////////////////////
+.errorpage {
+  width: 100%;
+  height: 80vh;
+  display: grid;
+  place-content: center;
 }

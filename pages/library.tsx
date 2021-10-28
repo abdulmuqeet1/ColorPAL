@@ -6,7 +6,6 @@ import styled from "styled-components";
 // compoenets
 import SettingUI from "../components/settingui";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { motion } from "framer-motion";
 const library_uri =
   process.env.COLORPAL_API_URL + "/colorsmini" ||
   "http://127.0.0.1:8000/colors";

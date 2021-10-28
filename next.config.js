@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  images: {
+    domains: ["lh3.googleusercontent.com", "avatars.githubusercontent.com"],
+  },
   env: {
     BASE_URL: process.env.COLORPAL_API_URL,
   },
