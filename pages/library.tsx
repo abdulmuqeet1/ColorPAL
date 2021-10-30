@@ -99,7 +99,7 @@ const ColorBox = styled.div`
 
 const Library: NextPage = ({ data }: any) => {
   const [maindata, setMaindata] = useState(data);
-  const [colors, setColors] = useState(maindata.slice(0, 40));
+  const [colors, setColors] = useState(maindata.slice(0, 100));
   const [colhex, setColhex] = useState("#111111");
   // const [colrgb, setColrgb] = useState([17, 17, 17]);
 
@@ -109,7 +109,7 @@ const Library: NextPage = ({ data }: any) => {
   };
 
   const getmorecolors = async () => {
-    const newcolors = maindata.slice(colors.length, colors.length + 20);
+    const newcolors = maindata.slice(colors.length, colors.length + 50);
     setColors((colors: any) => [...colors, ...newcolors]);
   };
 
@@ -169,7 +169,6 @@ const Library: NextPage = ({ data }: any) => {
 
 export async function getStaticProps() {
   const res = await fetch(library_uri);
-  // const res = await fetch("http://127.0.0.1:8000/colorsmini");
   const data = await res.json();
 
   if (!data) {

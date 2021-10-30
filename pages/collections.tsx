@@ -9,11 +9,6 @@ const Collections: NextPage = () => {
   const [savedItems, setSavedItems] = useState<any>();
   const [session, loading] = useSession();
 
-  // if (typeof window !== "undefined") {
-  //   setSavedItems(localStorage.getItem("accessToken"));
-  // }
-  // console.log(savedItems);
-
   if (!session) {
     return (
       <div className={style.collectionspagelogin}>
