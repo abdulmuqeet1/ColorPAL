@@ -102,6 +102,7 @@ export const getStaticProps = async () => {
 
     return {
       props: { palettesdata },
+      revalidate: 180, // 3 minutes revalidation time
     };
   } catch (e) {
     console.log("error fetching data ", e);
